@@ -20,8 +20,11 @@ data = pd.read_csv('data.csv', sep=';', names=['review','label'])
 data.head()
 
 
-def transform_input(review, cv):
-    feature_names = cv.get_feature_names()
+with open('dictionary.csv', newline='') as f:
+    reader = csv.reader(f)
+    dictionary = list(reader)[0]
+
+def transform_input(review, dictionary):
     raw_tokens = review.split(' ')
     for i in range(len(raw_tokens)):
         raw_tokens[i] = raw_tokens[i].lower()
@@ -40,7 +43,7 @@ def transform_input(review, cv):
 
         x = np.array([], dtype='int64')
 #         print(raw_tokens)
-        for feature in feature_names:
+        for feature in dictionary:
             if feature in raw_tokens:
                 x = np.append(x, [1])
             else:

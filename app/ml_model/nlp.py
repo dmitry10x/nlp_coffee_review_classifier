@@ -1,19 +1,12 @@
-import nlp
 import pandas as pd
 import numpy as np
 import re
-from nltk.corpus import stopwords
-from nltk.stem.porter import PorterStemmer
-from sklearn.feature_extraction.text import CountVectorizer
-
 import pymorphy2
-import pymystem3
-import nltk
 import math
 
 
 m1 = pymorphy2.MorphAnalyzer()
-m2 = pymystem3.Mystem()
+
 
 #Читаем .csv с отзывами
 data = pd.read_csv('data.csv', sep=';', names=['review','label'])
